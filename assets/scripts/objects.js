@@ -1,8 +1,9 @@
 const addToDoButton = document.getElementById('add-to-do-btn');
 const searchButton = document.getElementById('search-btn');
 
+const toDoLists = [];
+
 const addToDoHandler = () => {
-  // console.log(titleToDo.value);
   let title = document.getElementById('title').value;
   let extraName = document.getElementById('extra-name').value;
   let extraValue = document.getElementById('extra-value').value;
@@ -18,12 +19,12 @@ const addToDoHandler = () => {
   const newToDo = {
     info: {
       title,
-      [extraName]: extraName,
-      extraValue,
+      [extraName]: extraValue, // get dinamic property name from UI input
     },
     id: Math.random(),
   };
-  console.log(newToDo);
+  toDoLists.push(newToDo);
+  console.log(toDoLists);
 };
 
 const searchHandler = () => {
