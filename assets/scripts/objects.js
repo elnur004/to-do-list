@@ -3,8 +3,9 @@ const searchButton = document.getElementById('search-btn');
 const title = document.getElementById('title');
 const extraName = document.getElementById('extra-name');
 const extraValue = document.getElementById('extra-value');
+const toDoList = document.getElementById('to-do-list');
 
-const toDoLists = [];
+const toDo = [];
 
 const clearInput = (...elements) => {
   elements.forEach((el) => (el.value = ''));
@@ -26,13 +27,30 @@ const addToDoHandler = () => {
     },
     id: Math.random(),
   };
-  toDoLists.push(newToDo);
-  console.log(...toDoLists);
+  toDo.push(newToDo);
+  console.log(...toDo);
+  renderToDoUI();
   clearInput(title, extraName, extraValue);
 };
 
 const searchHandler = () => {
   console.log('Searched!!!');
+};
+
+const renderToDoUI = () => {
+  if (toDo.length === 0) {
+    toDoList.classList.remove('visible');
+    return;
+  } else {
+    toDoList.classList.add('visible');
+  }
+  toDoList.innerHTML = ''; // NOT IDEAL WAY ---> WILL CHECK THEN
+
+  toDo.forEach((toDoEl) => {
+    const toDoElement = document.createElement('li');
+    toDoElement.textContent = toDoEl.info.title;
+    toDoList.append(toDoElement);
+  });
 };
 
 addToDoButton.addEventListener('click', addToDoHandler);
