@@ -29,7 +29,7 @@ const addToDoHandler = () => {
   };
   toDo.push(newToDo);
   console.log(...toDo);
-  renderToDoUI();
+  renderToDoUI(newToDo);
   clearInput(title, extraName, extraValue);
 };
 
@@ -37,20 +37,18 @@ const searchHandler = () => {
   console.log('Searched!!!');
 };
 
-const renderToDoUI = () => {
+const renderToDoUI = (toDoEl) => {
   if (toDo.length === 0) {
     toDoList.classList.remove('visible');
     return;
   } else {
     toDoList.classList.add('visible');
   }
-  toDoList.innerHTML = ''; // NOT IDEAL WAY ---> WILL CHECK THEN
 
-  toDo.forEach((toDoEl) => {
-    const toDoElement = document.createElement('li');
-    toDoElement.textContent = toDoEl.info.title;
-    toDoList.append(toDoElement);
-  });
+  const toDoElement = document.createElement('li');
+  toDoElement.textContent = toDoEl.info.title;
+
+  toDoList.append(toDoElement);
 };
 
 addToDoButton.addEventListener('click', addToDoHandler);
