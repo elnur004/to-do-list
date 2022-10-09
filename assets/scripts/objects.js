@@ -11,6 +11,27 @@ const clearInput = (...elements) => {
   elements.forEach((el) => (el.value = ''));
 };
 
+const renderToDoUI = (toDoEl) => {
+  if (toDo.length === 0) {
+    toDoList.classList.remove('visible');
+    return;
+  } else {
+    toDoList.classList.add('visible');
+  }
+
+  const toDoElement = document.createElement('li');
+  // toDoElement.textContent = toDoEl.info.title;
+  let text = toDoEl.info.title + ` - `;
+  for (const key in toDoEl.info) {
+    if (key !== 'title') {
+      text = `${text} ${key} : ${toDoEl.info[key]}`;
+    }
+  }
+
+  toDoElement.textContent = text;
+  toDoList.append(toDoElement);
+};
+
 const addToDoHandler = () => {
   if (
     title.value.trim() === '' ||
@@ -35,20 +56,6 @@ const addToDoHandler = () => {
 
 const searchHandler = () => {
   console.log('Searched!!!');
-};
-
-const renderToDoUI = (toDoEl) => {
-  if (toDo.length === 0) {
-    toDoList.classList.remove('visible');
-    return;
-  } else {
-    toDoList.classList.add('visible');
-  }
-
-  const toDoElement = document.createElement('li');
-  toDoElement.textContent = toDoEl.info.title;
-
-  toDoList.append(toDoElement);
 };
 
 addToDoButton.addEventListener('click', addToDoHandler);
