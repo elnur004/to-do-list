@@ -28,11 +28,14 @@ const renderToDoUI = (filterToDoEl = '') => {
 
   filteredTodo.forEach((todo) => {
     const toDoElement = document.createElement('li');
+    const { info, ...otherProps } = todo;
+    console.log(otherProps);
+    const { title: todoTitle } = info; // changed title property name to todoTitle
     // toDoElement.textContent = toDoEl.info.title;
-    let text = todo.info.title + ` - `;
-    for (const key in todo.info) {
+    let text = todoTitle + ` - `;
+    for (const key in info) {
       if (key !== 'title') {
-        text = `${text} ${key} : ${todo.info[key]}`;
+        text = `${text} ${key} : ${info[key]}`;
       }
     }
 
