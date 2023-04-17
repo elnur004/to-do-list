@@ -55,7 +55,7 @@ const addToDoHandler = () => {
       title: title.value,
       [extraName.value]: extraValue.value, // get dinamic property name from UI input
     },
-    id: Math.random(),
+    id: crypto.randomUUID(),
   };
   toDo.push(newToDo);
   console.log(...toDo);
